@@ -1,0 +1,51 @@
+---
+- hosts: web
+
+  tasks:
+  - name: Install Jdk
+    package: name=openjdk-8-jdk-headless state=present
+
+  - name: Create wildfly user
+    user:
+      name: wildfly
+      system: yes
+
+  - name: Install wildfly
+    unarchive:
+      src: 'http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz'
+      dest: '/opt/'
+      owner: wildfly
+
+  - name: Rename wildfly
+    command: mv '/opt/wildfly-11.0.0.Final/' '/opt/wildfly/
+
+  - name: Create /etc/wildfly/
+    file:
+      path: '/etc/wildfly/'
+      state: directory
+      owner: wildfly
+
+  - name: Copy wildfly.conf in /etc/wildfly/
+    copy:
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf
+      dest: '/etc/wildfly/'
+      owner: wildfly
+
+  - name: Copy wildfly.service in /etc/systemd/system/
+    copy:
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+      dest: '/etc/systemd/system'
+
+  - name: Create /opt/wildfly/bin/
+    file:
+      path: '/opt/wildfly/bin/'
+      state: directory
+      owner: wildfly
+
+  - name: Copy launch.sh in /opt/wildfly/bin/
+    copy:
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+      dest: '/opt/wildfly/bin/'
+      owner: wildfly
+
+
