@@ -17,7 +17,7 @@
       owner: wildfly
 
   - name: Rename wildfly
-    command: mv '/opt/wildfly-11.0.0.Final/' '/opt/wildfly/
+    command: mv '/opt/wildfly-11.0.0.Final/' '/opt/wildfly/'
 
   - name: Create /etc/wildfly/
     file:
@@ -27,14 +27,14 @@
 
   - name: Copy wildfly.conf in /etc/wildfly/
     copy:
-      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf'
       dest: '/etc/wildfly/'
       owner: wildfly
 
   - name: Copy wildfly.service in /etc/systemd/system/
     copy:
-      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
-      dest: '/etc/systemd/system'
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service'
+      dest: '/etc/systemd/system/'
 
   - name: Create /opt/wildfly/bin/
     file:
@@ -44,7 +44,7 @@
 
   - name: Copy launch.sh in /opt/wildfly/bin/
     copy:
-      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+      src: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service'
       dest: '/opt/wildfly/bin/'
       owner: wildfly
 
